@@ -1,0 +1,44 @@
+<!--게시글 작성 폼-->
+{% extends "base.html" %}
+
+{% block title %}게시글 작성{% endblock %}
+
+{% block extra_css %}
+<!--css-->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/c_edit.css') }}">
+{% endblock %}
+
+{% block content %}
+<form id="postForm">
+    <div class="edit-container">
+
+    <!--제목 입력 영역-->
+    <label class="input-label">제목</label>
+    <input 
+        type="text" 
+        id="postTitle" 
+        class="title-input" 
+        placeholder="제목을 입력하세요." 
+        required 
+    />
+
+    <!--내용 입력 영역-->
+        <label class="input-label" style="margin-top:20px;">내용</label>
+        <textarea 
+            id="postContent" 
+            class="content-input" 
+            placeholder="내용을 입력하세요..." 
+            required
+        ></textarea>
+
+    <!--제출 버튼-->
+        <button type="submit" class="submit-btn">
+            글 작성하기
+        </button>
+    </div>
+</form>
+{% endblock %}
+{% block extra_js %}
+<!-- 게시글 작성 스크립트 -->
+<script type="module" src="{{ url_for('static', filename='js/c_edit.js') }}"></script>
+{% endblock %}

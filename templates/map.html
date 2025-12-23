@@ -1,0 +1,26 @@
+<!--길찾기(카카오맵) 페이지-->
+{% extends "base.html" %}
+{% set page_class = "page-map" %}
+{% block title %}{{ tr("Map") }}{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/map.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="page-title">
+        {{ tr("길찾기") }}
+    </h1>
+    
+    <p>
+        {{ tr("길 찾기를 하려면 지도를 누르세요.") }}
+    </p>
+
+    <!--카카오맵 연결 링크-->
+    <a href="https://map.kakao.com/?sName=&sX=&sY=&eName=&eX=&eY=" target="_blank">
+        <button class="map_img-button">
+            <img src="{{ url_for('static', filename='images/mapload.png') }}" alt="button image">
+        </button>
+    </a>
+</div>
+{% endblock %}

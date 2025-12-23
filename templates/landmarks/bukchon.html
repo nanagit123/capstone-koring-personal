@@ -1,0 +1,65 @@
+<!--명소 상세 페이지(북촌 한옥 마을)-->
+{% extends "base.html" %}
+{% set page_class = "page-landmark" %}
+{% block title %}북촌 한옥 마을{% endblock %}
+{% block extra_css %}
+<!--css-->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/landmark.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <article class="lm-article">
+
+    <!-- 명소 대표 이미지-->
+    <img src="{{ url_for('static', filename='images/bukchon.png') }}"
+         alt="북촌 한옥 마을"
+         class="landmark-img lm-hero" 
+    />
+
+    <!--명소 제목 및 요약-->
+    <h1 class="landmark-title lm-title">
+      {{ tr("북촌 한옥 마을") }}
+    </h1>
+
+    <p class="landmark-desc lm-lead">
+      <strong>{{ tr("북촌 한옥 마을") }}</strong>
+      {{ tr("은 서울의 경복궁과 창덕궁 사이에 자리한 조선 시대 전통 한옥들이 보존된 역사적인 주거 공간이다.") }}
+    </p>
+
+    <!--명소 상세 설명(본문)-->
+    <div class="lm-body">
+      <p class="landmark-desc">
+        {{ tr("이곳은 1392년 조선 건국 이후 형성된 당시 상류층의 주거지였던 곳으로 현재까지도 많은 한옥들이 보존되어 전통적인 주거 문화를 보여주고 있다.") }}
+      </p>
+
+      <p class="landmark-desc">
+        {{ tr("‘한옥’이라는 명칭은 개항 이후 서양의 근대 건축 양식이 국내에 유입되면서 기존의 한국 전통 건축 양식과 구별하기 위해 만들어진 신조어이며,
+        한옥건축역사학회는 한옥을 '한국의 전통적인 목구조 방식을 기본으로 구축된 건축물'로 정의하고 있다. 북촌 한옥마을의 한옥들은 현재도 주민들이 실생활 공간으로 사용하고 있지만,
+        방문객들도 지역별로 구분하여 이를 관람할 수 있다.") }}
+      </p>
+
+      <!--지도 영역(카카오맵)-->
+      <div 
+        id="map" 
+        data-lat="37.58161" 
+        data-lng="126.9850" 
+        style="width:100%;height:350px;">
+      </div>
+    </div>
+
+  </article>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
+
+<!--카카오맵SDK-->
+<script 
+  type="text/javascript" 
+  src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{ kakao_map_key }}">
+</script>
+
+<script src="{{ url_for('static', filename='js/landmark_map.js') }}"></script>
+{% endblock %}

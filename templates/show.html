@@ -1,0 +1,48 @@
+<!-- 게시글 상세 페이지 -->
+{% extends "base.html" %}
+
+{% block title %}게시글 보기{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/show.css') }}">
+{% endblock %}
+
+{% block content %}
+<a href="{{ url_for('community.get_posts') }}" class="back-button">
+    <img src="{{ url_for('static', filename='images/back.png') }}" alt="뒤로가기 아이콘" />
+</a>
+
+<!--게시글 영역-->
+<div class="post-body" id="postContainer">
+    <div class="show-post-header">
+
+        <span class="post-user">{{ post.userLoginID }}</span>
+        <span class="post-date">{{ post.postCreatedAt }}</span>
+
+        <h2 class="post-title">{{ post.postTitle }}</h2>
+
+        <div class="show-post-content">{{ post.postContent }}</div>
+    </div>
+
+</div>
+
+<!-- 구분선 -->
+<div class="divider"></div>
+
+<!-- 댓글 목록 영역 -->
+<section class="comments-section">
+    <h3>댓글</h3>
+    <div class="comments"></div>
+</section>
+
+<!-- 댓글 입력 영역 -->
+<section class="comment-input">
+    <textarea id="comment" placeholder="댓글을 입력하세요..."></textarea>
+    <button class="submit-button">등록</button>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script type="module" src="{{ url_for('static', filename='js/show.js') }}"></script>
+{% endblock %}

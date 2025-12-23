@@ -1,0 +1,64 @@
+<!--명소 상세 페이지(이순신 장군 동상)-->
+ {% extends "base.html" %}
+{% set page_class = "page-landmark" %}
+{% block title %}이순신 장군 동상{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/landmark.css') }}">
+{% endblock %}
+
+{% block content %}
+<!--명소 상세 페이지(이순신 장군 동상)-->
+<div class="container">
+  <article class="lm-article">
+
+    <!--명소 대표 이미지-->
+    <img src="{{ url_for('static', filename='images/yisunshin.png') }}"
+         alt="이순신 장군 동상"
+         class="landmark-img lm-hero"
+    />
+
+    <!--명소 제목 및 요약-->
+    <h1 class="landmark-title lm-title">
+      {{ tr("이순신 장군 동상") }}
+    </h1>
+
+    <p class="landmark-desc lm-lead">
+      <strong>{{ tr("충무공 이순신 장군 동상") }}</strong>
+      {{ tr("은 서울 광화문 광장에 위치한 임진왜란 영웅 이순신 장군을 기리는 상징적인 조형물이다.") }}
+    </p>
+
+    <!--명소 상세 설명(본문)-->
+    <div class="lm-body">
+      <p class="landmark-desc">
+        {{ tr("이 동상은 16세기 말 조선의 장군으로서 임진왜란 및 정유재란 당시 조선 수군을 지휘하며 나라를 지켜낸 이순신 제독의 위업을 기리고 있다.") }}
+      </p>
+
+      <p class="landmark-desc">
+        {{ tr("애국선열 조상건립위원회와 서울신문사의 공동 주관으로 1968년 4월 27일에 건립되었으며,
+        전체 높이 17m의 청동 입상이다. 동상 주변에는 거북선 모형과 북 2개, 분수대가 설치되어 장군의 해상 전공을 상징한다.") }}
+      </p>
+
+      <!--지도 영역(카카오맵)-->
+      <div
+        id="map" 
+        data-lat="37.57114" 
+        data-lng="126.9769" 
+        style="width:100%;height:350px;">
+      </div>
+    </div>
+
+  </article>
+</div>
+{% endblock %}
+{% block extra_js %}
+<!--페이지 전용 스크립트(사이드바)-->
+<script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
+
+<!--카카오맵 SDK-->
+<script
+  type="text/javascript"
+  src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{ kakao_map_key }}">
+</script>
+
+<script src="{{ url_for('static', filename='js/landmark_map.js') }}"></script>
+{% endblock %}

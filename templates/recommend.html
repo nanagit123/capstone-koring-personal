@@ -1,0 +1,29 @@
+<!-- 맛집 추천 리스트 페이지 -->
+{% extends "base.html" %}
+{% block title %}맛집 추천 목록{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/recommend.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="page-recommend">
+  <div class="top-bar">
+    <h1>추천 맛집 결과</h1>
+  </div>
+
+  <!-- 목록 컨테이너 -->
+  <div class="container">
+    <h3>추천된 맛집</h3>
+    <div id="restaurant-list" class="restaurant-list">
+      <!--js로 목록 생성 -->
+    </div>
+  </div>
+
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='js/recommend.js') }}"></script>
+{% endblock %}

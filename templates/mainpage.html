@@ -1,0 +1,68 @@
+<!--전 기능 통합 페이지-->
+{% extends "base.html" %}
+{% set page_class = "page-home" %}
+{% block title %}{{ tr("통합페이지") }}{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/mainpage.css') }}">
+{% endblock %}
+
+{% block content %}
+  <!--js에서 모바일 가로 스크롤 처리-->
+  <h1 class="mainpage-title">{{ tr("이 달의 추천 명소") }}</h1>
+  <div class="scroll-container">
+    <img src="{{ url_for('static', filename='images/monthly_spot_2025-08_01.png') }}" alt="image 1">
+    <img src="{{ url_for('static', filename='images/monthly_spot_2025-08_02.png') }}" alt="image 2">
+    <img src="{{ url_for('static', filename='images/monthly_spot_2025-08_03.png') }}" alt="image 3">
+    <img src="{{ url_for('static', filename='images/monthly_spot_2025-08_01.png') }}" alt="image 4">
+  </div>
+
+  <!-- 공지사항(미리보기-->
+  <div class="title-row">
+    <h1 class="mainpage-title">{{ tr("공지사항") }}</h1>
+    <a href="{{ url_for('mainpage', lang=lang) }}" class="arrow-link" title="{{ tr('공지사항 전체 보기') }}">➔</a>
+  </div>
+  <hr>
+
+  <!--공지사항 컨테이너-->
+  <div class="notices-container">
+    <ul id="notice-list" style="list-style-type:none; padding-left:0;">
+      {% for n in notices | default([], true) %}
+        <li>
+          <a href="{{ n.url | default(url_for('mainpage', lang=lang)) }}">
+            {{ n.title | default(tr('제목 없음')) }}
+          </a>
+        </li>
+      {% else %}
+        <li class="empty">{{ tr("공지 없음") }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <!-- 커뮤니티(미리보기) -->
+  <div class="title-row" style="margin-top:24px;">
+    <h1 class="mainpage-title">{{ tr("커뮤니티") }}</h1>
+    <a href="{{ url_for('community.get_posts', dev=dev_q) }}" class="arrow-link" title="{{ tr('커뮤니티 전체 보기') }}">➔</a>
+  </div>
+  <hr>
+
+  <!--커뮤니티 컨테이너-->
+  <div class="board-container">
+    <ul id="post-list" style="list-style-type:none; padding-left:0;">
+      {% for p in posts | default([], true) %}
+        <li>
+          <a href="{{ p.url | default(url_for('mainpage', lang=lang)) }}">
+            {{ p.title | default(tr('내용 없음')) }}
+          </a>
+        </li>
+      {% else %}
+        <li class="empty">{{ tr("게시글이 없습니다.") }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='js/mainpage.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='js/api.js') }}"></script>
+{% endblock %}
